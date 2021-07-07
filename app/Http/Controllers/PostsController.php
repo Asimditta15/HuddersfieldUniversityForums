@@ -11,14 +11,16 @@ class PostsController extends Controller
     public function index()
     {
         $currentURL = url()->current();
-        $lastCharPosition = strlen($currentURL) - 1;
-        for ($x = $lastCharPosition; $x < strlen($currentURL); $x++) {
-            $newString = $currentURL[$x];
-        }
 
-        $posts = posts::select('Posts.id', 'Posts.title', 'Posts.message')
+        $str = $currentURL;
+        preg_match_all('!\d+!', $str, $int);
+
+        $firstelm = array_values(array_slice($int, -1))[0];
+        $lastelm = array_values(array_slice($firstelm, -1))[0];
+
+        $posts = posts::select('threads.id', 'posts.threadid', 'Posts.title', 'Posts.message', 'posts.id as postid')
             ->join('threads', 'Posts.threadid', '=', 'threads.id')
-            ->where('Posts.threadid', '=', $newString )
+            ->where('Posts.threadid', '=', $lastelm )
             ->get();
 
         return view ('posts', compact('posts'));

@@ -15,6 +15,7 @@ class Posts extends Model
 
     public function path ()
     {
-        return '/threads/posts/comments/' . $this -> id;
+        return '/threads/posts/comments/' . $this -> postid;
     }
+
 }

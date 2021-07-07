@@ -30,7 +30,7 @@ Route::middleware ('auth') -> group (function () {
 
     Route::get('/threads/posts/{posts}', [PostsController::class, 'index']);
 
-    Route::get('/threads/posts/comments/{posts}', [CommentsController::class, 'index']);
-    Route::post('/threads/posts/comments/{posts}', [CommentsController::class, 'store']);
+    Route::get('/threads/posts/comments/{comments}', [CommentsController::class, 'index']);
+    Route::post('/threads/posts/comments/{comments}', [CommentsController::class, 'store']);
 
 });

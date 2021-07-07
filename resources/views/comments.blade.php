@@ -15,9 +15,7 @@
                 <header class="font-bold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
                     {{$comments[0] -> title}}
                 </header>
-
                 <div class="w-full p-6">
-
                     @foreach($comments as $c)
                         <div class="container container max-w-full m-auto flex flex-wrap flex-col md:flex-row items-center justify-start">
                             <div class="w-full lg:w-1/2 p-3">
@@ -32,26 +30,25 @@
                             </div>
                         </div>
                     @endforeach
-
-                        <form class="ml-4" method="post" action="{{$comments[0] -> path}}">
-                            {{ csrf_field() }}
-                            <div class="flex flex-wrap">
-                                <div class="w-1/2">
-                                    <label class="block mb-2 mt-2" for="message">
-                                        Comment
-                                    </label>
-                                    <input name="memberid" type="hidden" value={{$comments[0] -> memberid}} />
-                                    <input name="postsid" type="hidden" value={{$comments[0] -> postsid}} />
-                                    <input class="block border border-black w-full w-auto h-auto"
-                                           type="text" name="message"
-                                           autocomplete="off" />
-                                    <button type="submit" class="mr-2 hover:bg-blue-300 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow">
-                                        Submit
-                                    </button>
-                                    </a>
-                                </div>
+                    <form class="ml-4" method="post" action="{{$comments[0] -> path}}">
+                        {{ csrf_field() }}
+                        <div class="flex flex-wrap">
+                            <div class="w-1/2">
+                                <label class="block mb-2 mt-2" for="message">
+                                    Comment
+                                </label>
+                                <input name="memberid" type="hidden" value={{$id = Auth::id()}} />
+                                <input name="postsid" type="hidden" value={{$comments[0] -> postsid}} />
+                                <input class="block border border-black w-full w-auto h-auto"
+                                       type="text" name="message"
+                                       autocomplete="off" />
+                                <button type="submit" class="mr-2 hover:bg-blue-300 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow">
+                                    Submit
+                                </button>
+                                </a>
                             </div>
-                        </form>
+                        </div>
+                    </form>
                 </div>
             </section>
         </div>

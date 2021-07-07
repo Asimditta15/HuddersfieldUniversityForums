@@ -16,7 +16,7 @@ class CommentsController extends Controller
             $newString = $currentURL[$x];
         }
 
-        $comments = comments::select('posts.id', 'posts.title', 'users.name', 'comments.memberid', 'comments.postsid', 'comments.message')
+        $comments = comments::select('posts.title', 'users.name', 'users.id', 'comments.memberid', 'comments.postsid', 'comments.message')
             ->join('posts', 'comments.postsid', '=', 'posts.id')
             ->join('users', 'comments.memberid', '=', 'users.id')
             ->where('posts.id', '=', $newString )
