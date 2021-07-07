@@ -7,77 +7,54 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $currentURL = url()->current();
+        $lastCharPosition = strlen($currentURL) - 1;
+        for ($x = $lastCharPosition; $x < strlen($currentURL); $x++) {
+            $newString = $currentURL[$x];
+        }
+
+        $posts = posts::select('Posts.id', 'Posts.title', 'Posts.message')
+            ->join('threads', 'Posts.threadid', '=', 'threads.id')
+            ->where('Posts.threadid', '=', $newString )
+            ->get();
+
+        return view ('posts', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Posts  $posts
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Posts $posts)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Posts  $posts
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Posts $posts)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Posts  $posts
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Posts $posts)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Posts  $posts
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Posts $posts)
     {
         //

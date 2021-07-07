@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Forum extends Model
+class Comments extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,9 @@ class Forum extends Model
 
     public function path ()
     {
-        return '/threads/' . $this -> id;
+        return '/threads/posts/comments/' . $this -> id;
     }
+
+    protected $fillable = ['memberid', 'postsid', 'message'];
+
 }

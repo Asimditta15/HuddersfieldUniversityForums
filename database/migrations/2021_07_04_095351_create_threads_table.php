@@ -15,7 +15,7 @@ class CreateThreadsTable extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
-            $table->string('postsid');
+            $table->string('forumsid');
             $table->string('memberid');
             $table->string('title');
             $table->string('message');

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ForumController;
+use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +18,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/auth/login');
 });
 Auth::routes();
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware ('auth') -> group (function () {
 
+    Route::get('/home', [ForumController::class, 'index']);
+
+    Route::get('/threads/{threads}', [ThreadController::class, 'index']);
+
+    Route::get('/threads/posts/{posts}', [PostsController::class, 'index']);
+
+    Route::get('/threads/posts/comments/{posts}', [CommentsController::class, 'index']);
+    Route::post('/threads/posts/comments/{posts}', [CommentsController::class, 'store']);
+
+});

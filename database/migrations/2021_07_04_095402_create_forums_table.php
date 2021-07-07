@@ -15,7 +15,6 @@ class CreateForumsTable extends Migration
     {
         Schema::create('forums', function (Blueprint $table) {
             $table->id();
-            $table->string('threadid');
             $table->string('memberid');
             $table->string('title');
             $table->string('message');

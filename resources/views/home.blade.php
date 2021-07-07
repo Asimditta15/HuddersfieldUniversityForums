@@ -13,15 +13,30 @@
         <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
 
             <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
-                Dashboard
+                Forums
             </header>
 
             <div class="w-full p-6">
-                <p class="text-gray-700">
-                    You are logged in!
-                </p>
+
+                @foreach($forums as $f)
+                <div class="container container max-w-full m-auto flex flex-wrap flex-col md:flex-row items-center justify-start">
+                    <div class="w-full lg:w-1/2 p-3">
+                        <div class="flex flex-col lg:flex-row rounded overflow-hidden h-auto lg:h-32 border shadow shadow-lg">
+                            <div href="" class="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between">
+                                <a href="{{ $f -> path}}" class="text-center text-black font-bold text-xl mb-2">
+                                    {{ $f -> title }}
+                                </a>
+                                <p class="text-grey-darker text-base">{{ $f -> message }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
             </div>
         </section>
     </div>
 </main>
 @endsection
+
+
